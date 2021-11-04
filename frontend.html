@@ -61,14 +61,30 @@
             type: "function"
           },
           {
-            inputs: [],
+            inputs: [
+              {
+                internalType: "address",
+                name: "_to",
+                type: "address"
+              },
+              {
+                internalType: "uint256",
+                name: "_tokenId",
+                type: "uint256"
+              },
+              {
+                internalType: "string",
+                name: "_uri",
+                type: "string"
+              }
+            ],
             name: "mint",
             outputs: [],
             stateMutability: "nonpayable",
             type: "function",
           },
         ],
-        "0xe02df9e3e622debdd69fb838bb799e3f168902c5"
+        "0xA36B964BfED9028a0770A5E2794FED185402D094"
       );
     }
 
@@ -86,14 +102,14 @@
       const account = await getCurrentAccount();
       console.log("web3 available", account);
       bakeContract = await loadBake();
-      console.log(window.web3.eth.defaultAccount);
+      //console.log(window.web3.eth.defaultAccount);
       const bakeBal = await bakeContract.methods.balanceOf(account).call();
-      console.log(bakeBal);
+      console.log('Your TOPO balance is:', bakeBal);
     }
 
     async function mint() {
       const account = await getCurrentAccount();
-      await bakeContract.methods.mint().send({ from: account });
+      await bakeContract.methods.mint(account, 122, 'mendozadevs.com').send({ from: account });
       console.log('felicitaciones')
     }
 
@@ -105,3 +121,4 @@
 </body>
 
 </html>
+
